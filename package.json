@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.35",
+    "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "@testing-library/jest-dom": "^5.12.0",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
@@ -16,8 +19,8 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "build:tailwind": "tailwind build src/styles/tailwind.css -o src/styles/tailwind.output.css",
-    "watch:tailwind": "chokidar 'src/**/*.css' 'src/**/*.scss' --ignore src/styles/tailwind.output.css -c 'npm run build:tailwind'",
+    "build:tailwind": "tailwind build ./src/styles/tailwind.css -o ./src/styles/tailwind.output.css",
+    "watch:tailwind": "chokidar ./src/**/*.css ./src/**/*.scss ./src/styles/tailwind.css --ignore src/styles/tailwind.output.css -c \"npm run build:tailwind\" ",
     "start": "npm-run-all build:tailwind --parallel watch:tailwind start:react",
     "start:react": "react-scripts start",
     "prebuild": "cross-env NODE_ENV=production run-s build:tailwind",
