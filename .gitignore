@@ -21,3 +21,6 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# tailwind generated css
+./src/styles/tailwind.output.css
