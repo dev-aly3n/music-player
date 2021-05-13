@@ -11,6 +11,17 @@
     @apply  flex flex-col items-center justify-center;
   }
 
+  .song-container img {
+      @apply w-1/5 rounded-full m-4;
+  }
+
+  .song-container h2 {
+      @apply  p-4 pt-9 text-3xl font-bold text-gray-700;
+  }
+
+  .song-container h3 {
+      @apply text-xl font-medium text-gray-700;
+  }
 
 
 
