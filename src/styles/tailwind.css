@@ -34,7 +34,7 @@
   }
 
   .time-control input {
-    @apply w-full px-8 py-4;
+    @apply w-full py-4;
   }
   .time-control p {
     @apply p-4;
@@ -45,5 +45,21 @@
   }
   .play-control svg {
     @apply cursor-pointer;
+  }
+
+  /*component: Library */
+  .library {
+    top: 0;
+    left: 0;
+    box-shadow: 2px 2px 50px gray;
+    @apply fixed  w-80 h-full bg-blue-200;
+  }
+
+  .library-songs {
+    @apply flex flex-col items-center;
+  }
+
+  .library-songs img {
+    @apply w-1/5;
   }
 }

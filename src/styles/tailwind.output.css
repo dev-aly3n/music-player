@@ -645,8 +645,6 @@ video {
 .time-control input {
   padding-top: 1rem;
   padding-bottom: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
   width: 100%;
 }
 
@@ -667,6 +665,32 @@ video {
 
 .play-control svg {
   cursor: pointer;
+}
+
+/*component: Library */
+
+.library {
+  top: 0;
+  left: 0;
+  box-shadow: 2px 2px 50px gray;
+  --tw-bg-opacity: 1;
+  background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
+  height: 100%;
+  position: fixed;
+  width: 20rem;
+}
+
+.library-songs {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-align-items: center;
+          align-items: center;
+}
+
+.library-songs img {
+  width: 20%;
 }
 
 .space-y-0 > :not([hidden]) ~ :not([hidden]) {
