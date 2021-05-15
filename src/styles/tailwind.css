@@ -72,7 +72,9 @@
     top: 0;
     left: 0;
     box-shadow: 2px 2px 50px rgb(185, 185, 185);
-    @apply fixed  w-80 h-full bg-blue-100 overflow-y-scroll;
+    transform: translateX(-100%);
+    transition: all 0.5s ease;
+    @apply fixed w-80 h-full bg-blue-100 overflow-y-scroll opacity-0;
   }
 
   .library-songs {
@@ -97,5 +99,20 @@
   .selected h3,
   .selected h4 {
     @apply text-white;
+  }
+
+  /* component: Nav */
+  nav {
+    min-height: 10vh;
+    @apply flex justify-around items-center;
+  }
+
+  .library-toggle-btn {
+    transition: all 0.25s ease;
+    @apply bg-gray-100 cursor-pointer border-2  border-indigo-900 p-2 hover:bg-gray-500 hover:text-white active:bg-gray-600 active:text-white;
+  }
+  .active-library {
+    transform: translateX(0%);
+    opacity: 1;
   }
 }

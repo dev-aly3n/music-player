@@ -7,8 +7,14 @@ module.exports = {
       'public/**/*.html',
     ],
     theme: {
-      extend: {},
+      extend: {
+      },
     },
-    variants: {},
+    variants: {
+      extend: {
+        backgroundColor: ['active'],
+        textColor: ['active'],
+      },
+    },
     plugins: [],
   }
