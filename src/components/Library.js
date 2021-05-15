@@ -1,7 +1,7 @@
 import React from "react";
 import LibrarySong from "./LibrarySong";
 
-function Library({ songs, SETcurrentSong, audioRef,songPlaying }) {
+function Library({ songs, SETcurrentSong, audioRef, songPlaying, SETsongs }) {
   return (
     <div className="library">
       <h2 className=" text-2xl font-bold pl-6 py-3">Library</h2>
@@ -10,9 +10,11 @@ function Library({ songs, SETcurrentSong, audioRef,songPlaying }) {
           <LibrarySong
             songs={songs}
             song={song}
+            key={song.id}
             SETcurrentSong={SETcurrentSong}
             audioRef={audioRef}
             songPlaying={songPlaying}
+            SETsongs={SETsongs}
           />
         ))}
       </div>

@@ -1,4 +1,4 @@
-import React, {useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -7,9 +7,14 @@ import {
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
 
-const Player = ({ currentSong, songPlaying, SETsongPlaying, audioRef, songInfo, SETsongInfo }) => {
-
-
+const Player = ({
+  currentSong,
+  songPlaying,
+  SETsongPlaying,
+  audioRef,
+  songInfo,
+  SETsongInfo,
+}) => {
   function playSongHandler() {
     if (songPlaying) {
       audioRef.current.pause();
@@ -20,24 +25,28 @@ const Player = ({ currentSong, songPlaying, SETsongPlaying, audioRef, songInfo, 
     }
   }
 
-
-
   function timeCorrection(time) {
     return (
       Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
     );
   }
 
-  function sliderDrag(e){
+  function sliderDrag(e) {
     audioRef.current.currentTime = e.target.value;
-    SETsongInfo({...songInfo, time: e.target.value});
+    SETsongInfo({ ...songInfo, time: e.target.value });
   }
 
   return (
     <div className="player">
       <div className="time-control">
         <p>{timeCorrection(songInfo.time)}</p>
-        <input type="range" min={0} max={songInfo.duration} value={songInfo.time} onChange={sliderDrag} />
+        <input
+          type="range"
+          min={0}
+          max={songInfo.duration || 0}
+          value={songInfo.time}
+          onChange={sliderDrag}
+        />
         <p>{timeCorrection(songInfo.duration)}</p>
       </div>
       <div className="play-control">
@@ -54,7 +63,6 @@ const Player = ({ currentSong, songPlaying, SETsongPlaying, audioRef, songInfo, 
           icon={faAngleRight}
         />
       </div>
-     
     </div>
   );
 };
