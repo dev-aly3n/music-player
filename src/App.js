@@ -38,6 +38,9 @@ function App() {
         SETcurrentSong={SETcurrentSong}
         songPlaying={songPlaying}
         SETsongPlaying={SETsongPlaying}
+        songs={songs}
+        SETcurrentSong={SETcurrentSong}
+        SETsongs={SETsongs}
       />
       <Library
         libraryStatus={libraryStatus}
