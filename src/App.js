@@ -32,6 +32,13 @@ function App() {
     });
   }
 
+  async function songEndHandler(){
+    let currentIndex = songs.findIndex(
+      (thisSong) => thisSong.id === currentSong.id);
+     await SETcurrentSong(songs[(currentIndex + 1) % songs.length]);
+     if(songPlaying) {audioRef.current.play()}
+  }
+
   return (
     <div className="App">
       <Nav libraryStatus={libraryStatus} SETlibraryStatus={SETlibraryStatus} />
@@ -61,6 +68,7 @@ function App() {
         onLoadedMetadata={songTimeHandler}
         src={currentSong.audio}
         ref={audioRef}
+        onEnded={songEndHandler}
       ></audio>
     </div>
   );

@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -6,7 +6,7 @@ import {
   faAngleRight,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
-import {playAudio} from '../util';
+
 
 const Player = ({
   currentSong,
@@ -20,9 +20,9 @@ const Player = ({
   SETsongs,
 }) => {
 
-  useEffect(()=>{
+  function activeLibHandler(nexperv){
     const newSong = songs.map((everySong) => {
-      if (everySong.id === currentSong.id) {
+      if (everySong.id === nexperv.id) {
         return {
           ...everySong,
           active: true,
@@ -35,7 +35,8 @@ const Player = ({
       }
     });
     SETsongs(newSong);
-  }, [currentSong])
+  }
+
 
   function playSongHandler() {
     if (songPlaying) {
@@ -58,20 +59,23 @@ const Player = ({
     SETsongInfo({ ...songInfo, time: e.target.value });
   }
 
-  function skipHandler(direction) {
+  async function skipHandler(direction) {
     let currentIndex = songs.findIndex(
       (thisSong) => thisSong.id === currentSong.id
     );
     if (direction === "skip-forward") {
-      SETcurrentSong(songs[(currentIndex + 1) % songs.length]);
+     await SETcurrentSong(songs[(currentIndex + 1) % songs.length]);
+     activeLibHandler(songs[(currentIndex + 1) % songs.length])
     }
     if (direction === "skip-back") {
       if (currentIndex < 1) {
         currentIndex = songs.length;
       }
-      SETcurrentSong(songs[(currentIndex - 1) % songs.length]);
+     await SETcurrentSong(songs[(currentIndex - 1) % songs.length]);
+     activeLibHandler(songs[(currentIndex - 1) % songs.length])
     }
-    playAudio(songPlaying, audioRef)
+    if(songPlaying) {audioRef.current.play()}
+    
   }
 
   const trackAnim = {

@@ -1,5 +1,5 @@
 import React from "react";
-import {playAudio} from '../util';
+
 
 const LibrarySong = ({
   song,
@@ -25,8 +25,8 @@ const LibrarySong = ({
         };
       }
     });
-    SETsongs(newSong);
-playAudio(songPlaying, audioRef);
+    await SETsongs(newSong);
+    if(songPlaying) {audioRef.current.play()}
 
   }
 
