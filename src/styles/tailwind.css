@@ -49,12 +49,9 @@
   }
 
   .time-control {
-    @apply w-1/2  flex;
+    @apply w-1/2  flex justify-center items-center ;
   }
 
-  .time-control input {
-    @apply w-full py-4;
-  }
   .time-control p {
     @apply p-4;
   }
@@ -115,4 +112,44 @@
     transform: translateX(0%);
     opacity: 1;
   }
+}
+
+.time-control input {
+  padding:0;
+  margin:0;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  width: 100%;
+}
+
+input[type="range"]:focus {
+  outline: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 18px;
+
+}
+
+.track {
+  background: lightblue;
+  width: 100%;
+  height: 18px;
+  position: relative;
+  border-radius: 1rem;
+  overflow:hidden;
+}
+
+.animate-track {
+  background: lightgray;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateX(0%);
+  pointer-events: none;
 }

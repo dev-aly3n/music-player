@@ -13,16 +13,22 @@ function App() {
   const [songInfo, SETsongInfo] = useState({
     time: 0,
     duration: 0,
+    animationPercentage:0,
   });
   const [libraryStatus, SETlibraryStatus] = useState(false);
 
   function songTimeHandler(e) {
     let currentTime = e.target.currentTime;
     let songDuration = e.target.duration;
+    const roundedCurrent = Math.round(currentTime);
+    const roundedDuration = Math.round(songDuration);
+    const animation = Math.round((roundedCurrent/roundedDuration)*100);
+
     SETsongInfo({
       ...songInfo,
       time: currentTime,
       duration: songDuration,
+      animationPercentage: animation,
     });
   }
 
