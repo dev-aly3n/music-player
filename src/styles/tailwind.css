@@ -5,6 +5,11 @@
 @tailwind utilities;
 
 @layer components {
+
+  .app {
+    transition: all 0.5s ease;
+  }
+
   /* scrollbar styling start */
   * {
     scrollbar-width: thin;
@@ -31,7 +36,7 @@
   }
 
   .song-container img {
-    @apply w-1/5 rounded-full m-4;
+    @apply md:w-1/5 rounded-full m-4 w-2/3 ;
   }
 
   .song-container h2 {
@@ -49,7 +54,7 @@
   }
 
   .time-control {
-    @apply w-1/2  flex justify-center items-center ;
+    @apply md:w-1/2  flex justify-center items-center w-11/12 ;
   }
 
   .time-control p {
@@ -57,7 +62,7 @@
   }
 
   .play-control {
-    @apply flex justify-between items-center p-4 w-1/3;
+    @apply flex justify-between items-center p-4 md:w-1/3 w-2/3;
   }
   .play-control svg {
     @apply cursor-pointer;
@@ -71,7 +76,7 @@
     box-shadow: 2px 2px 50px rgb(185, 185, 185);
     transform: translateX(-100%);
     transition: all 0.5s ease;
-    @apply fixed w-80 h-full bg-blue-100 overflow-y-scroll opacity-0;
+    @apply fixed w-full sm:w-80 h-full bg-blue-100 overflow-y-scroll opacity-0;
   }
 
   .library-songs {
@@ -83,6 +88,7 @@
   }
 
   .library-song-description {
+    transition: background 0.7s ease;
     @apply flex cursor-pointer hover:bg-indigo-400 w-full pl-6 pt-4 pr-2 pb-4;
   }
   .song-info {
@@ -106,12 +112,17 @@
 
   .library-toggle-btn {
     transition: all 0.25s ease;
-    @apply bg-gray-100 cursor-pointer border-2  border-indigo-900 p-2 hover:bg-gray-500 hover:text-white active:bg-gray-600 active:text-white;
+    @apply bg-gray-100 cursor-pointer border-2  border-indigo-900 p-2 hover:bg-gray-500 hover:text-white active:bg-gray-600 active:text-white z-10;
   }
   .active-library {
     transform: translateX(0%);
     opacity: 1;
   }
+
+  .library-active{
+    margin-left: 30%;
+  }
+
 }
 
 .time-control input {
