@@ -1,6 +1,8 @@
 import React from "react";
 
 const Song = ({currentSong}) => {
+
+  ////jsx
   return (
     <div className="song-container">
       <img alt={currentSong.name} src={currentSong.cover}></img>
