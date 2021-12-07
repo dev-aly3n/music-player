@@ -102,7 +102,7 @@ const Player = ({
         {/* we apply a gradient background to the range slider based on the color values on the data object
         ... at first we removed the deafult styles and then we put another div on the slider and apply these to that div */}
         <div
-          className="track"
+          className="track "
           style={{
             background: `linear-gradient(to right,${currentSong.color[0]},${currentSong.color[1]})`,
           }}
@@ -115,7 +115,7 @@ const Player = ({
             onChange={sliderDrag}
           />
           {/* apply the translateX animation to the range slider */}
-          <div style={trackAnim} className="animate-track"></div>
+          <div style={trackAnim} className="animate-track transition-all duration-1000"></div>
         </div>
         {/* check if the duration avilable now and if it doesnt just show 0:00 (not NaN) */}
         <p>{songInfo.duration ? timeCorrection(songInfo.duration) : "0:00"}</p>

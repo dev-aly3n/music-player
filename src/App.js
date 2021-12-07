@@ -33,7 +33,7 @@ function App() {
     let songDuration = e.target.duration;
     const roundedCurrent = Math.round(currentTime);
     const roundedDuration = Math.round(songDuration);
-    const animation = Math.round((roundedCurrent / roundedDuration) * 100);
+    const animation = ((roundedCurrent / roundedDuration) * 100).toFixed(2);
     SETsongInfo({
       ...songInfo,
       time: currentTime,
@@ -69,7 +69,6 @@ function App() {
         songPlaying={songPlaying}
         SETsongPlaying={SETsongPlaying}
         songs={songs}
-        SETcurrentSong={SETcurrentSong}
         SETsongs={SETsongs}
       />
       {/* library hold the songs to select */}
