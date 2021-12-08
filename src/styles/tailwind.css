@@ -4,6 +4,10 @@
 
 @tailwind utilities;
 
+body {
+  @apply bg-white;
+}
+
 @layer components {
 
   .app {
