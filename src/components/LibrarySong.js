@@ -1,5 +1,5 @@
 import React from "react";
-
+import {changeBGColor} from '../util'
 const LibrarySong = ({
   song,
   SETcurrentSong,
@@ -12,6 +12,9 @@ const LibrarySong = ({
   //set current song to the selected song(clicked song)
   async function songSelectHandler() {
     await SETcurrentSong(song);
+    if (songPlaying) {
+      changeBGColor(song.color[0],song.color[1])
+    }
 
     //map over the songs and for every single song, if it was the selected song give it the property active: true
     //if it isnt the selected song, so give it avtive: flase

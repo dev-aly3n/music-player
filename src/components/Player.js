@@ -44,10 +44,11 @@ const Player = ({
   // just play and pause the song by clicking on the
   function playSongHandler() {
     changeBGColor(currentSong.color[0], currentSong.color[1]);
-
+    
     if (songPlaying) {
       audioRef.current.pause();
       SETsongPlaying(!songPlaying);
+      document.body.style.animation ="";
     } else {
       audioRef.current.play();
       SETsongPlaying(!songPlaying);
