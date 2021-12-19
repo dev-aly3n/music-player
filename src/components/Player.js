@@ -6,8 +6,8 @@ import {
   faAngleRight,
   faPause,
 } from "@fortawesome/free-solid-svg-icons";
+import {changeBGColor} from '../util'
 
-import {hexToRgbA} from '../util'
 
 const Player = ({
   currentSong,
@@ -39,43 +39,18 @@ const Player = ({
     SETsongs(newSong);
   }
 
-  function changeBGColor() {
-    const firstColor = hexToRgbA(currentSong.color[0],0.3);
-    const secondColor = hexToRgbA(currentSong.color[1],0.3);
-
-    const css = window.document.styleSheets[0];
-
-css.insertRule(`
-@keyframes colorChange {
-  0% {
-    background: ${firstColor};
-  }
-  100% {
-    background: ${secondColor};
-  }
-}`, css.cssRules.length);
-    
-    document.body.style.animation = "colorChange 2s linear infinite alternate both";
-  }
-
 
 
   // just play and pause the song by clicking on the
   function playSongHandler() {
-    changeBGColor();
+    changeBGColor(currentSong.color[0], currentSong.color[1]);
 
     if (songPlaying) {
       audioRef.current.pause();
       SETsongPlaying(!songPlaying);
-
-
-
     } else {
       audioRef.current.play();
       SETsongPlaying(!songPlaying);
-
-
-
     }
   }
 
@@ -98,22 +73,22 @@ css.insertRule(`
   async function skipHandler(direction) {
     let currentIndex = songs.findIndex(
       (thisSong) => thisSong.id === currentSong.id
-      );
-      if (direction === "skip-forward") {
-        //set current song
-        await SETcurrentSong(songs[(currentIndex + 1) % songs.length]);
-        changeBGColor();
-        //set the active property to the selected song to apply a class
-        activeLibHandler(songs[(currentIndex + 1) % songs.length]);
+    );
+    if (direction === "skip-forward") {
+      //set current song
+      await SETcurrentSong(songs[(currentIndex + 1) % songs.length]);
+      changeBGColor(currentSong.color[0], currentSong.color[1]);
+      //set the active property to the selected song to apply a class
+      activeLibHandler(songs[(currentIndex + 1) % songs.length]);
+    }
+    if (direction === "skip-back") {
+      //to avoid to getting a negative number, we check it here
+      //it's BCS we want to if the song reached to the first and user clicked to the skip back the it jump to the end of the list
+      if (currentIndex < 1) {
+        currentIndex = songs.length;
       }
-      if (direction === "skip-back") {
-        //to avoid to getting a negative number, we check it here
-        //it's BCS we want to if the song reached to the first and user clicked to the skip back the it jump to the end of the list
-        if (currentIndex < 1) {
-          currentIndex = songs.length;
-        }
-        await SETcurrentSong(songs[(currentIndex - 1) % songs.length]);
-        changeBGColor();
+      await SETcurrentSong(songs[(currentIndex - 1) % songs.length]);
+      changeBGColor(currentSong.color[0], currentSong.color[1]);
       activeLibHandler(songs[(currentIndex - 1) % songs.length]);
     }
     if (songPlaying) {
@@ -126,7 +101,6 @@ css.insertRule(`
     transform: `translateX(${songInfo.animationPercentage}%)`,
   };
 
-
   ////jsx
   return (
     <div className="player">
@@ -136,7 +110,7 @@ css.insertRule(`
         {/* we apply a gradient background to the range slider based on the color values on the data object
         ... at first we removed the deafult styles and then we put another div on the slider and apply these to that div */}
         <div
-          className="track "
+          className="track"
           style={{
             background: `linear-gradient(to right,${currentSong.color[0]},${currentSong.color[1]})`,
           }}
@@ -149,7 +123,10 @@ css.insertRule(`
             onChange={sliderDrag}
           />
           {/* apply the translateX animation to the range slider */}
-          <div style={trackAnim} className="animate-track transition-all duration-1000"></div>
+          <div
+            style={trackAnim}
+            className="animate-track transition-all duration-1000"
+          ></div>
         </div>
         {/* check if the duration avilable now and if it doesnt just show 0:00 (not NaN) */}
         <p>{songInfo.duration ? timeCorrection(songInfo.duration) : "0:00"}</p>

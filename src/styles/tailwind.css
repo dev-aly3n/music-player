@@ -169,6 +169,7 @@ input[type="range"]::-moz-range-thumb {
   position: relative;
   border-radius: 1rem;
   overflow:hidden;
+  @apply border border-white shadow-lg;
 }
 
 .animate-track {
