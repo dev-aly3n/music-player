@@ -78,7 +78,6 @@ const Player = ({
     if (direction === "skip-forward") {
       //set current song
       await SETcurrentSong(songs[(currentIndex + 1) % songs.length]);
-      changeBGColor(currentSong.color[0], currentSong.color[1]);
       //set the active property to the selected song to apply a class
       activeLibHandler(songs[(currentIndex + 1) % songs.length]);
     }
@@ -89,11 +88,11 @@ const Player = ({
         currentIndex = songs.length;
       }
       await SETcurrentSong(songs[(currentIndex - 1) % songs.length]);
-      changeBGColor(currentSong.color[0], currentSong.color[1]);
       activeLibHandler(songs[(currentIndex - 1) % songs.length]);
     }
     if (songPlaying) {
       audioRef.current.play();
+      changeBGColor(currentSong.color[0], currentSong.color[1]);
     }
   }
 
