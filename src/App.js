@@ -4,6 +4,7 @@ import Song from "./components/Song";
 import data from "./MusicData";
 import Library from "./components/Library";
 import Nav from "./components/Nav";
+import { changeBGColor } from "./util";
 
 function App() {
   ////useRef
@@ -49,6 +50,7 @@ function App() {
     await SETcurrentSong(songs[(currentIndex + 1) % songs.length]);
     if (songPlaying) {
       audioRef.current.play();
+      changeBGColor(songs[(currentIndex + 1) % songs.length].color[0], songs[(currentIndex + 1) % songs.length].color[1])
     }
   }
 
